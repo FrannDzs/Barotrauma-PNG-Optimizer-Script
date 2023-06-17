@@ -60,11 +60,11 @@ else:
     valid_response = False
     while not valid_response:
         if proceed.lower() == "y":
-            print("CAUTION: This will overwrite the original files...", "red")
+            print("CAUTION: This will overwrite the original files...")
             option = input("Press Enter to continue...")
             valid_response = True
         elif proceed.lower() == "n":
-            print("Operation canceled.", "red")
+            print("Operation canceled.")
             exit()
         else:
             proceed = input("Invalid input. Please enter 'Y' for yes or 'N' for no.")
