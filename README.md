@@ -6,6 +6,6 @@
 
 2. Download Python from https://www.python.org/?downloads
 
-3. Install by checking the add to PATH option
+3. Install Python by checking the add to PATH option
 
 4. Run the script from the system console/powershell and follow the instructions
