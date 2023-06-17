@@ -10,7 +10,7 @@ def search_png_files(folder):
                 png_files.append(full_path)
     return png_files
 
-def execute_pngquant(file):
+def execute_pngquant(file, quality):
     script_path = os.path.dirname(os.path.abspath(__file__))
     pngquant_path = os.path.join(script_path, "pngquant.exe")
     arguments = [pngquant_path, "--force", "--ext=.png", "--skip-if-larger", "--quality", quality, file]
@@ -38,7 +38,13 @@ print("-------------------------------------------------------------------------
 # Prompt user input to continue
 option = input("Press Enter to continue...")
 quality = input("Enter the quality range (min-max) for compression: ")
-    execute_pngquant(file, quality)
+
+# Function call to execute_pngquant should pass both file and quality parameters
+def execute_pngquant(file):
+    script_path = os.path.dirname(os.path.abspath(__file__))
+    pngquant_path = os.path.join(script_path, "pngquant.exe")
+    arguments = [pngquant_path, "--force", "--ext=.png", "--skip-if-larger", "--quality", quality, file]
+    subprocess.run(arguments, shell=True)
 
 # Ask the user if he/she wants to use the default path
 valid_response = False
