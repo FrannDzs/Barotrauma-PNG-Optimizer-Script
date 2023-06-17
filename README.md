@@ -9,3 +9,7 @@
 3. Install Python by checking the add to PATH option
 
 4. Run the script from the system console/powershell and follow the instructions
+
+# Features
+- Works by default with mods installation folder: %localappdata%\Daedalic Entertainment GmbH\Barotrauma\WorkshopMods\Installed
+- Works with custom paths
