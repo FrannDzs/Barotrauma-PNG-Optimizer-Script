@@ -1,5 +1,5 @@
 # Barotrauma PNG optimizer script
- A python script to compress PNG images inside a folder and its subfolders using pngquant
+ A python script to compress PNG images inside a folder and its subfolders using [pngquant](https://github.com/kornelski/pngquant)
 
 ![](https://i.imgur.com/hGnBG01.png)
 
