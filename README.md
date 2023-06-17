@@ -8,7 +8,7 @@
 
 3. Install Python by checking the add to PATH option
 
-4. Run the [script](./Barotrauma_PNG_optimizer.py) from the system console/powershell and follow the instructions
+4. Run the script `Barotrauma_PNG_optimizer.py` and follow the instructions
 
 # Features
 - Works by default with mods installation folder: %localappdata%\Daedalic Entertainment GmbH\Barotrauma\WorkshopMods\Installed
