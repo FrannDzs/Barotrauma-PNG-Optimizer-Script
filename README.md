@@ -11,6 +11,6 @@
 4. Run the script `Barotrauma_PNG_optimizer.py` and follow the instructions
 
 # Features
-- Works by default with mods installation folder: %localappdata%\Daedalic Entertainment GmbH\Barotrauma\WorkshopMods\Installed
+- Works by default with mods installation folder: `%localappdata%\Daedalic Entertainment GmbH\Barotrauma\WorkshopMods\Installed`
 - Works with custom paths
 - Displays file sizes before and after compression
