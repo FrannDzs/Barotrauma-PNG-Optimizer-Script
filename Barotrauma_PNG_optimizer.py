@@ -13,7 +13,7 @@ def search_png_files(folder):
 def execute_pngquant(file):
     script_path = os.path.dirname(os.path.abspath(__file__))
     pngquant_path = os.path.join(script_path, "pngquant.exe")
-    arguments = [pngquant_path, "--force", "--ext=.png", "--skip-if-larger", file]
+    arguments = [pngquant_path, "--force", "--ext=.png", "--skip-if-larger", "--quality", quality, file]
     subprocess.run(arguments, shell=True)
 
 print("---------------------------------------------------------------------------------------------------------------------------------------")
@@ -37,6 +37,8 @@ print("-------------------------------------------------------------------------
 
 # Prompt user input to continue
 option = input("Press Enter to continue...")
+quality = input("Enter the quality range (min-max) for compression: ")
+    execute_pngquant(file, quality)
 
 # Ask the user if he/she wants to use the default path
 valid_response = False
@@ -49,7 +51,7 @@ while not valid_response:
         print("Invalid input. Please enter 'Y' for yes or 'N' for no.")
 
 if use_default_url == "y":
-    print("CAUTION: This will overwrite the original files...", "red")
+    print("CAUTION: This will overwrite the original files...")
     option = input("Press Enter to continue...")
     search_folder = os.path.expandvars("%localappdata%\\Daedalic Entertainment GmbH\\Barotrauma\\WorkshopMods\\Installed")
 else:
