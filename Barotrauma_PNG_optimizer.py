@@ -16,7 +16,7 @@ def execute_pngquant(file, quality):
     arguments = [pngquant_path, "--force", "--ext=.png", "--skip-if-larger", "--quality", quality, file]
     subprocess.run(arguments, shell=True)
 
-print("\033[1;36m---------------------------------------------------------------------------------------------------------------------------------------")
+print("\033[1;36m-------------------------------------------")
 print()
 print("\033[1;32mWelcome to the PNG file compression script for Barotrauma mods!")
 print("\033[1;34m===========================================")
@@ -29,11 +29,11 @@ print("\033[1;32mBefore we begin, you will be asked whether you want to use the 
 print()
 print("\033[1;32m- If you choose 'Y' (yes), default installation path of the mods will be used.")
 print()
-print("\033[1;33mNOTE: This can override all PNGs in target. ")
+print("\033[1;33mNOTE: This can override all PNGs in target.")
 print()
 print("\033[1;31m**I hope this script proves useful to you! If you have any questions, feel free to ask**")
 print()
-print("\033[1;36m---------------------------------------------------------------------------------------------------------------------------------------")
+print("\033[1;36m--------------------------------------------")
 
 # Prompt user input to continue
 option = input("\033[1mPress Enter to continue...")
