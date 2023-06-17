@@ -75,7 +75,7 @@ found_files = search_png_files(search_folder)
 
 print("PNG files found:")
 for file in found_files:
-    print(file, "green")
+    print(file)
     initial_size = os.path.getsize(file)
     execute_pngquant(file)
     compressed_size = os.path.getsize(file)
