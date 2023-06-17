@@ -2,7 +2,7 @@
  A python script to compress PNG images inside a folder and its subfolders using pngquant
 
 # Instructions
-1. Download the Python script and extract it wherever you like
+1. Download the repo and extract it wherever you like
 
 2. Download Python from https://www.python.org/?downloads
 
