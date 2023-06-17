@@ -13,3 +13,4 @@
 # Features
 - Works by default with mods installation folder: %localappdata%\Daedalic Entertainment GmbH\Barotrauma\WorkshopMods\Installed
 - Works with custom paths
+- Displays file sizes before and after compression
