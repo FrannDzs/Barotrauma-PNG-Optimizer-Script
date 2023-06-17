@@ -16,28 +16,28 @@ def execute_pngquant(file, quality):
     arguments = [pngquant_path, "--force", "--ext=.png", "--skip-if-larger", "--quality", quality, file]
     subprocess.run(arguments, shell=True)
 
-print("---------------------------------------------------------------------------------------------------------------------------------------")
+print("\033[1;36m---------------------------------------------------------------------------------------------------------------------------------------")
 print()
-print("Welcome to the PNG file compression script for Barotrauma mods!")
-print("===========================================")
+print("\033[1;32mWelcome to the PNG file compression script for Barotrauma mods!")
+print("\033[1;34m===========================================")
 print()
-print("This script uses 'pngquant' to compress all .png files in a folder and its subfolders.")
+print("\033[1;32mThis script uses 'pngquant' to compress all .png files in a folder and its subfolders.")
 print()
-print("Compressing PNG files can significantly reduce their size without loss of visual quality.")
+print("\033[1;32mCompressing PNG files can significantly reduce their size without loss of visual quality.")
 print()
-print("Before we begin, you will be asked whether you want to use the default path for the search folder. If you prefer to use a custom path, you will be able to enter it.")
+print("\033[1;32mBefore we begin, you will be asked whether you want to use the default path for the search folder. If you prefer to use a custom path, you will be able to enter it.")
 print()
-print("- If you choose 'Y' (yes), default installation path of the mods will be used.")
+print("\033[1;32m- If you choose 'Y' (yes), default installation path of the mods will be used.")
 print()
-print("NOTE: This can override all PNGs in target. ")
+print("\033[1;33mNOTE: This can override all PNGs in target. ")
 print()
-print("**I hope this script proves useful to you! If you have any questions, feel free to ask**")
+print("\033[1;31m**I hope this script proves useful to you! If you have any questions, feel free to ask**")
 print()
-print("---------------------------------------------------------------------------------------------------------------------------------------")
+print("\033[1;36m---------------------------------------------------------------------------------------------------------------------------------------")
 
 # Prompt user input to continue
-option = input("Press Enter to continue...")
-quality = input("Enter the quality range (min-max) for compression: ")
+option = input("\033[1mPress Enter to continue...")
+quality = input("\033[1mEnter the quality range (min-max) for compression: ")
 
 # Function call to execute_pngquant should pass both file and quality parameters
 def execute_pngquant(file):
@@ -49,43 +49,43 @@ def execute_pngquant(file):
 # Ask the user if he/she wants to use the default path
 valid_response = False
 while not valid_response:
-    use_default_url = input("Do you want to use the default path? (%localappdata%\\Daedalic Entertainment GmbH\\Barotrauma\\WorkshopMods\\Installed)? (Y/N): ")
+    use_default_url = input("\033[1mDo you want to use the default path? (%localappdata%\\Daedalic Entertainment GmbH\\Barotrauma\\WorkshopMods\\Installed)? (Y/N): ")
     use_default_url = use_default_url.lower()
     if use_default_url == "y" or use_default_url == "n":
         valid_response = True
     else:
-        print("Invalid input. Please enter 'Y' for yes or 'N' for no.")
+        print("\033[1mInvalid input. Please enter 'Y' for yes or 'N' for no.")
 
 if use_default_url == "y":
-    print("CAUTION: This will overwrite the original files...")
-    option = input("Press Enter to continue...")
+    print("\033[1;33mCAUTION: This will overwrite the original files...")
+    option = input("\033[1mPress Enter to continue...")
     search_folder = os.path.expandvars("%localappdata%\\Daedalic Entertainment GmbH\\Barotrauma\\WorkshopMods\\Installed")
 else:
     # Ask the user to enter a custom address
-    custom_folder = input("Enter the custom folder address: ")
-    proceed = input("Do you wish to proceed with the address entered? (Y/N) ")
+    custom_folder = input("\033[1mEnter the custom folder address: ")
+    proceed = input("\033[1mDo you wish to proceed with the address entered? (Y/N) ")
 
     valid_response = False
     while not valid_response:
         if proceed.lower() == "y":
-            print("CAUTION: This will overwrite the original files...")
-            option = input("Press Enter to continue...")
+            print("\033[1;33mCAUTION: This will overwrite the original files...")
+            option = input("\033[1mPress Enter to continue...")
             valid_response = True
         elif proceed.lower() == "n":
-            print("Operation canceled.")
+            print("\033[1mOperation canceled.")
             exit()
         else:
-            proceed = input("Invalid input. Please enter 'Y' for yes or 'N' for no.")
+            proceed = input("\033[1mInvalid input. Please enter 'Y' for yes or 'N' for no.")
 
     search_folder = os.path.expandvars(custom_folder)
 
 found_files = search_png_files(search_folder)
 
-print("PNG files found:")
+print("\033[1mPNG files found:")
 for file in found_files:
-    print(file)
+    print("\033[1m" + file)
     initial_size = os.path.getsize(file)
     execute_pngquant(file)
     compressed_size = os.path.getsize(file)
-    print(f"Size before compression: {initial_size} bytes")
-    print(f"Size after compression: {compressed_size} bytes")
+    print(f"\033[1mSize before compression: {initial_size} bytes")
+    print(f"\033[1mSize after compression: {compressed_size} bytes")
