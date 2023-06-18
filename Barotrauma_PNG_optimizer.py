@@ -43,7 +43,7 @@ def search_png_files(folder):
 def execute_pngquant(file, quality):
     script_path = os.path.dirname(os.path.abspath(__file__))
     pngquant_path = os.path.join(script_path, "pngquant.exe")
-    arguments = [pngquant_path, "--force", "--ext=.png", "--skip-if-larger", "--quality=", quality, file]
+    arguments = [pngquant_path, "--force", "--ext=.png", "--skip-if-larger", "--quality=" + quality, file]
     subprocess.run(arguments, shell=True)
 
 
@@ -123,7 +123,7 @@ def main():
     quality = input("Enter the quality range (min-max) for compression: ")
     total_initial_size = 0
     total_compressed_size = 0
-    
+
     valid_response = False
     while not valid_response:
         resize_option = get_user_input("Do you want to automatically resize images larger than 4096x4096 and round the width and height to the nearest multiple of 4? (Y/N): ", ["y", "n"])
@@ -138,8 +138,8 @@ def main():
     search_folder = get_folder_path()
     found_files = search_png_files(search_folder)
 
-    print("\033[0;32PNG files found:\033[0m")
-    for file in tqdm(found_files, desc="Processing files", unit="file"):
+    print("\033[0;32mPNG files found:\033[0m")
+    for file in tqdm.tqdm(found_files, desc="Processing files", unit="file"):
         try:
             print(file)
             initial_size = os.path.getsize(file)
@@ -157,7 +157,7 @@ def main():
             print(f"\033[0;31mError processing file: \033[0m{file}")
             print(f"\033[0;31mError message: \033[0m{str(e)}")
             continue
-            
+
     print("-------------------------------------------")
     print(f"Total initial size: {total_initial_size} Bytes")
     print(f"\033[0;32mTotal compressed size:\033[0m {total_compressed_size} \033[0;32mBytes\033[0m")
