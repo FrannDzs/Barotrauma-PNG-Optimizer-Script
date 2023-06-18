@@ -6,20 +6,20 @@ import sys
 
 def install_pip():
     if sys.version_info < (3, 4):
-        print("\033[1;33mpip not found. Installing...")
+        print("\033[0;32mpip not found. Installing...\033[0m")
         subprocess.check_call([sys.executable, "-m", "ensurepip", "--upgrade"])
-        print("\033[1;32mpip installed successfully!")
+        print("\033[0;32mpip installed successfully!\033[0m")
     else:
-        print("\033[1;36mPython version is 3.4 or greater. Skipping pip installation.")
+        print("\033[0;32mPython version is 3.4 or greater. Skipping pip installation.\033[0m")
 
 
 def install_pillow():
     try:
         import PIL
     except ImportError:
-        print("\033[1;33mPillow not found. Installing...")
+        print("\033[0;32mPillow not found. Installing...\033[0m")
         subprocess.check_call([sys.executable, "-m", "pip", "install", "pillow"])
-        print("\033[1;32mPillow installed successfully!")
+        print("\033[0;32mPillow installed successfully!\033[0m")
 
 
 def search_png_files(folder):
@@ -70,16 +70,16 @@ def resize_images(file):
 
 
 def print_header():
-    print("\033[1;36m-------------------------------------------")
-    print("\033[1;32mWelcome to the PNG file compression script for Barotrauma mods!")
-    print("\033[1;34m===========================================")
-    print("\033[1;32mThis script uses 'pngquant' to compress all .png files in a folder and its subfolders.")
-    print("\033[1;32mCompressing PNG files can significantly reduce their size without loss of visual quality.")
-    print("\033[1;32mBefore we begin, you will be asked whether you want to use the default path for the search folder. If you prefer to use a custom path, you will be able to enter it.")
-    print("\033[1;32m- If you choose 'Y' (yes), default installation path of the mods will be used.")
-    print("\033[1;33mNOTE: This can override all PNGs in the target.")
-    print("\033[1;31m**I hope this script proves useful to you! If you have any questions, feel free to ask**")
-    print("\033[1;36m--------------------------------------------")
+    print("-------------------------------------------")
+    print("\033[0;37mWelcome to the PNG file compression script for Barotrauma mods!\033[0m")
+    print("===========================================")
+    print("\033[0;37mThis script uses 'pngquant' to compress all .png files in a folder and its subfolders.\033[0m")
+    print("\033[0;32m//Compressing PNG files can significantly reduce their size without loss of visual quality\\ \033[0m")
+    print("\033[0;37mBefore we begin, you will be asked whether you want to use the default path for the search folder. If you prefer to use a custom path, you will be able to enter it.\033[0m")
+    print("\033[0;37m- If you choose 'Y' (yes), default installation path of the mods will be used.\033[0m")
+    print("\033[0;31mNOTE: This can override all PNGs in the target.\033[0m")
+    print("\033[0;34m**I hope this script proves useful to you! If you have any questions, feel free to ask**\033[0m")
+    print("--------------------------------------------")
 
 
 def get_user_input(prompt, valid_options):
@@ -88,20 +88,20 @@ def get_user_input(prompt, valid_options):
         if user_input in valid_options:
             return user_input
         else:
-            print("\033[1;31mInvalid input. Please enter a valid option.")
+            print("\033[0;31mInvalid input. Please enter a valid option\033[0m")
 
 
 def get_folder_path():
-    use_default_url = get_user_input("\033[1mDo you want to use the default path? (%localappdata%\\Daedalic Entertainment GmbH\\Barotrauma\\WorkshopMods\\Installed)? (Y/N): ", ["y", "n"])
+    use_default_url = get_user_input("Do you want to use the default path? (%localappdata%\\Daedalic Entertainment GmbH\\Barotrauma\\WorkshopMods\\Installed)? (Y/N): ", ["y", "n"])
     if use_default_url == "y":
         return os.path.expandvars("%localappdata%\\Daedalic Entertainment GmbH\\Barotrauma\\WorkshopMods\\Installed")
     else:
-        custom_folder = input("\033[1mEnter the custom folder address: ")
-        proceed = get_user_input("\033[1mDo you wish to proceed with the address entered? (Y/N) ", ["y", "n"])
+        custom_folder = input("Enter the custom folder address: ")
+        proceed = get_user_input("\033[0;33mDo you wish to proceed with the address entered? (Y/N) \033[0m", ["y", "n"])
         if proceed == "y":
             return os.path.expandvars(custom_folder)
         else:
-            print("\033[1mOperation canceled.")
+            print("\033[0;31mOperation canceled\033[0m")
             sys.exit()
 
 
@@ -109,48 +109,48 @@ def main():
     install_pip()
     install_pillow()
     print_header()
-    input("\033[1mPress Enter to continue...")
-    quality = input("\033[1mEnter the quality range (min-max) for compression: ")
+    input("\033[0;32Press Enter to continue...\033[0m")
+    quality = input("Enter the quality range (min-max) for compression: ")
     total_initial_size = 0
     total_compressed_size = 0
-
+    
     valid_response = False
     while not valid_response:
-        resize_option = get_user_input("\033[1mDo you want to automatically resize images larger than 4096x4096 and round the width and height to the nearest multiple of 4? (Y/N): ", ["y", "n"])
+        resize_option = get_user_input("Do you want to automatically resize images larger than 4096x4096 and round the width and height to the nearest multiple of 4? (Y/N): ", ["y", "n"])
         if resize_option == 'y':
-            print("\033[1;33mCAUTION: This will overwrite the original files...")
+            print("\033[0;33mCAUTION: This will overwrite the original files...\033[0m")
             valid_response = True
         elif resize_option == 'n':
             valid_response = True
         else:
-            print("\033[1;31mInvalid input. Please enter 'Y' or 'N'.")
+            print("\033[0;31mInvalid input. Please enter 'Y' or 'N'.\033[0m")
 
     search_folder = get_folder_path()
     found_files = search_png_files(search_folder)
 
-    print("\033[1mPNG files found:")
+    print("\033[0;32PNG files found:\033[0m")
     for file in found_files:
         try:
-            print("\033[1m" + file)
+            print(file)
             initial_size = os.path.getsize(file)
             execute_pngquant(file, quality)
             compressed_size = os.path.getsize(file)
             total_initial_size += initial_size
             total_compressed_size += compressed_size
             initial_resolution, resized_resolution = resize_images(file)
-            print(f"\033[1mResolution before resizing: {initial_resolution}")
-            print(f"\033[1mResolution after resizing: {resized_resolution}")
-            print(f"\033[1mSize before process: {initial_size} bytes")
-            print(f"\033[1mSize after process: {compressed_size} bytes")
-            print("\033[1m-------------------------------------------")
+            print(f"Resolution before resizing: {initial_resolution}")
+            print(f"\033[0;32mResolution after resizing: {resized_resolution}")
+            print(f"Size before process: {initial_size} bytes")
+            print(f"\033[0;32mSize after process: {compressed_size} bytes")
+            print("-------------------------------------------")
         except Exception as e:
-            print(f"\033[1;31mError processing file: {file}")
-            print(f"\033[1;31mError message: {str(e)}")
+            print(f"Error processing file: {file}")
+            print(f"Error message: {str(e)}")
             continue
-
-    print("\033[1m-------------------------------------------")
-    print(f"\033[1mTotal initial size: {total_initial_size} bytes")
-    print(f"\033[1mTotal compressed size: {total_compressed_size} bytes")
+            
+    print("-------------------------------------------")
+    print(f"Total initial size: {total_initial_size} bytes")
+    print(f"\033[0;32mTotal compressed size:\033[0m {total_compressed_size} \033[0;32mbytes\033[0m")
 
 
 if __name__ == "__main__":
