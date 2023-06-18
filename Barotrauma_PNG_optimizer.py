@@ -2,7 +2,7 @@ import os
 import subprocess
 import sys
 from PIL import Image
-import tqdm
+from tqdm import tqdm
 
 
 def install_pip():
