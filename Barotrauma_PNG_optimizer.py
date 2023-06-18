@@ -109,7 +109,7 @@ def main():
     install_pip()
     install_pillow()
     print_header()
-    input("\033[0;32Press Enter to continue...\033[0m")
+    input("\033[0;32 Press Enter to continue...\033[0m")
     quality = input("Enter the quality range (min-max) for compression: ")
     total_initial_size = 0
     total_compressed_size = 0
