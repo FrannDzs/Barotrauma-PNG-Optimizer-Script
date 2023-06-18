@@ -1,8 +1,8 @@
 import os
 import subprocess
 from PIL import Image
+from tqdm import tqdm
 import sys
-
 
 def install_pip():
     if sys.version_info < (3, 4):
@@ -21,7 +21,6 @@ def install_pillow():
         subprocess.check_call([sys.executable, "-m", "pip", "install", "pillow"])
         print("\033[0;32mPillow installed successfully!\033[0m")
 
-
 def install_tqdm():
     try:
         import tqdm
@@ -29,8 +28,7 @@ def install_tqdm():
         print("\033[0;32mTqdm not found. Installing...\033[0m")
         subprocess.check_call([sys.executable, "-m", "pip", "install", "tqdm"])
         print("\033[0;32mTqdm installed successfully!\033[0m")
-
-
+        
 def search_png_files(folder):
     png_files = []
     for path, directories, files in os.walk(folder):
@@ -139,7 +137,7 @@ def main():
     found_files = search_png_files(search_folder)
 
     print("\033[0;32mPNG files found:\033[0m")
-    for file in tqdm.tqdm(found_files, desc="Processing files", unit="file"):
+    for file in tqdm(found_files, desc="\033[0;32mProcessing files\033[0m", unit="file"):
         try:
             print(file)
             initial_size = os.path.getsize(file)
@@ -148,9 +146,9 @@ def main():
             total_initial_size += initial_size
             total_compressed_size += compressed_size
             initial_resolution, resized_resolution = resize_images(file)
-            print(f"Resolution before resizing: {initial_resolution}")
+            print(f"\033[0;36mResolution before resizing: \033[0m{initial_resolution}")
             print(f"\033[0;32mResolution after resizing: \033[0m{resized_resolution}")
-            print(f"Size before process: {initial_size} Bytes")
+            print(f"\033[0;36mSize before process: \033[0m{initial_size} Bytes")
             print(f"\033[0;32mSize after process: \033[0m{compressed_size} Bytes")
             print("-------------------------------------------")
         except Exception as e:
@@ -159,7 +157,7 @@ def main():
             continue
 
     print("-------------------------------------------")
-    print(f"Total initial size: {total_initial_size} Bytes")
+    print(f"\033[0;36mTotal initial size: \033[0m{total_initial_size} Bytes")
     print(f"\033[0;32mTotal compressed size:\033[0m {total_compressed_size} \033[0;32mBytes\033[0m")
 
 
