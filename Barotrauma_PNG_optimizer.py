@@ -28,7 +28,7 @@ def install_tqdm():
         import tqdm
     except ImportError:
         print("\033[0;32mTqdm not found. Installing...\033[0m")
-        subprocess.check_call(["pip", "install", "tqdm"])
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "tqdm"])
         print("\033[0;32mTqdm installed successfully!\033[0m")
 
 
