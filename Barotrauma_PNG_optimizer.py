@@ -6,9 +6,9 @@ import sys
 
 def install_pip():
     if sys.version_info < (3, 4):
-        print("\033[0;32mpip not found. Installing...\033[0m")
+        print("\033[0;32mPip not found. Installing...\033[0m")
         subprocess.check_call([sys.executable, "-m", "ensurepip", "--upgrade"])
-        print("\033[0;32mpip installed successfully!\033[0m")
+        print("\033[0;32mPip installed successfully!\033[0m")
     else:
         print("\033[0;32mPython version is 3.4 or greater. Skipping pip installation.\033[0m")
 
@@ -109,7 +109,7 @@ def main():
     install_pip()
     install_pillow()
     print_header()
-    input("\033[0;32 Press Enter to continue...\033[0m")
+    input("\033[0;32mPress Enter to continue...\033[0m")
     quality = input("Enter the quality range (min-max) for compression: ")
     total_initial_size = 0
     total_compressed_size = 0
@@ -128,7 +128,7 @@ def main():
     search_folder = get_folder_path()
     found_files = search_png_files(search_folder)
 
-    print("\033[0;32PNG files found:\033[0m")
+    print("\033[0;32mPNG files found:\033[0m")
     for file in found_files:
         try:
             print(file)
