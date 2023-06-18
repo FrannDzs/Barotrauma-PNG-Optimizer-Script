@@ -139,13 +139,13 @@ def main():
             total_compressed_size += compressed_size
             initial_resolution, resized_resolution = resize_images(file)
             print(f"Resolution before resizing: {initial_resolution}")
-            print(f"\033[0;32mResolution after resizing: {resized_resolution}")
+            print(f"\033[0;32mResolution after resizing: \033[0m{resized_resolution}")
             print(f"Size before process: {initial_size} bytes")
-            print(f"\033[0;32mSize after process: {compressed_size} bytes")
+            print(f"\033[0;32mSize after process: \033[0m{compressed_size} bytes")
             print("-------------------------------------------")
         except Exception as e:
-            print(f"Error processing file: {file}")
-            print(f"Error message: {str(e)}")
+            print(f"\033[0;31mError processing file: \033[0m{file}")
+            print(f"\033[0;31mError message: \033[0m{str(e)}")
             continue
             
     print("-------------------------------------------")
