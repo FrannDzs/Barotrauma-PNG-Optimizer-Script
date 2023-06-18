@@ -13,7 +13,13 @@
 4. Run the script `Barotrauma_PNG_optimizer.py` and follow the instructions
 
 # Features
+- Automatically resizes images exceeding 4096 by height or width, while maintaining the aspect ratio, using the Lanczos algorithm.
 - Works by default with mods installation folder: `%localappdata%\Daedalic Entertainment GmbH\Barotrauma\WorkshopMods\Installed`
 - Works with custom paths
 - Displays file sizes before and after compression
 - Possibility to choose the quality range
+
+# Dependancies
+- [pip](https://pypi.org/project/pip/): It is automatically installed if the Python version is lower than 3.4
+
+- [pillow](https://pypi.org/project/Pillow/): The script will ask you if you want to install it
