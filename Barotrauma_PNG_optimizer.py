@@ -1,7 +1,7 @@
 import os
 import subprocess
 import sys
-from PIL import Image
+from PIL import PIL
 from tqdm import tqdm
 
 
