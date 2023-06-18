@@ -38,6 +38,7 @@ def resize_images(file):
     initial_size = img.size
     width, height = img.size
     max_dimension = max(width, height)
+    
     if max_dimension > 4096:
         aspect_ratio = width / height
         if width > height:
@@ -46,8 +47,13 @@ def resize_images(file):
         else:
             new_height = 4096
             new_width = int(new_height * aspect_ratio)
+        
+        new_width = round(new_width / 4) * 4
+        new_height = round(new_height / 4) * 4
+        
         img.thumbnail((new_width, new_height), Image.LANCZOS)
         img.save(file)
+    
     resized_size = img.size
     return initial_size, resized_size
 
@@ -126,9 +132,6 @@ def main():
             resized_files.append(file)
         print(f"\033[1mTotal size before compression: {total_initial_size} bytes")
         print(f"\033[1mTotal size after compression: {total_compressed_size} bytes")
-        print("\033[1mFiles resized:")
-        for file in resized_files:
-        print("\033[1m" + file)
         
 if __name__ == "__main__":
     main()
