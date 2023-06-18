@@ -53,25 +53,19 @@ def resize_images(file):
 
     if max_dimension > 4096:
         aspect_ratio = width / height
-        if width > height:
-            new_width = 4096
-            new_height = round(new_width / aspect_ratio)
-        else:
-            new_height = 4096
-            new_width = round(new_height * aspect_ratio)
-
-        new_width = round(new_width / 4) * 4
-        new_height = round(new_height / 4) * 4
-
-        img.thumbnail((new_width, new_height), Image.LANCZOS)
+        new_width = 4096
+        new_height = round(new_width / aspect_ratio) if width > height else 4096
     else:
-        new_width = round(width / 4) * 4
-        new_height = round(height / 4) * 4
+        new_width = width
+        new_height = height
 
-        img = img.resize((new_width, new_height), Image.LANCZOS)
+    new_width = round(new_width / 4) * 4
+    new_height = round(new_height / 4) * 4
 
+    img.thumbnail((new_width, new_height), Image.LANCZOS)
     img.save(file)
     resized_size = img.size
+
     return initial_size, resized_size
 
 
