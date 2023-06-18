@@ -6,9 +6,9 @@ import sys
 
 def install_pip():
     if sys.version_info < (3, 4):
-        print("\033[0;32mPip not found. Installing...\033[0m")
+        print("\033[0;32mpip not found. Installing...\033[0m")
         subprocess.check_call([sys.executable, "-m", "ensurepip", "--upgrade"])
-        print("\033[0;32mPip installed successfully!\033[0m")
+        print("\033[0;32mpip installed successfully!\033[0m")
     else:
         print("\033[0;32mPython version is 3.4 or greater. Skipping pip installation.\033[0m")
 
@@ -71,10 +71,10 @@ def resize_images(file):
 
 def print_header():
     print("-------------------------------------------")
-    print("\033[0;37mWelcome to the PNG file compression script for Barotrauma mods!\033[0m")
+    print("\033[0;36mWelcome to the PNG file compression script for Barotrauma mods!\033[0m")
     print("===========================================")
-    print("\033[0;37mThis script uses 'pngquant' to compress all .png files in a folder and its subfolders.\033[0m")
-    print("\033[0;32m//Compressing PNG files can significantly reduce their size without loss of visual quality\\ \033[0m")
+    print("\033[0;37mThis script uses 'pngquant' to compress all .png files in a folder and its subfolders\033[0m")
+    print("\033[0;32m/Compressing PNG files can significantly reduce their size without loss of visual quality\\ \033[0m")
     print("\033[0;37mBefore we begin, you will be asked whether you want to use the default path for the search folder. If you prefer to use a custom path, you will be able to enter it.\033[0m")
     print("\033[0;37m- If you choose 'Y' (yes), default installation path of the mods will be used.\033[0m")
     print("\033[0;31mNOTE: This can override all PNGs in the target.\033[0m")
@@ -128,7 +128,7 @@ def main():
     search_folder = get_folder_path()
     found_files = search_png_files(search_folder)
 
-    print("\033[0;32mPNG files found:\033[0m")
+    print("\033[0;32PNG files found:\033[0m")
     for file in found_files:
         try:
             print(file)
