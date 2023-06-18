@@ -26,3 +26,5 @@
 - [pillow](https://pypi.org/project/Pillow/): The script will ask you if you want to install it
 
 - [tqdm](https://pypi.org/project/tqdm/): It is automatically installed
+
+- [colorama](https://pypi.org/project/colorama/) It is automatically installed
