@@ -1,7 +1,7 @@
 # Barotrauma PNG optimizer script
  A python script to compress and resizing PNG images inside a folder and its subfolders using [pngquant](https://github.com/kornelski/pngquant) and [pillow](https://pypi.org/project/Pillow/) 
 
-![](https://i.imgur.com/kOGXbBV.png)
+![](https://i.imgur.com/ecFvVkr.png)
 
 # Instructions
 1. Download the repo and extract it wherever you like
