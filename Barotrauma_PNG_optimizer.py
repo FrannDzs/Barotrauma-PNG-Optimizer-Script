@@ -1,7 +1,6 @@
 import os
 import subprocess
 import sys
-import math
 from PIL import Image
 from tqdm import tqdm
 
@@ -46,9 +45,6 @@ def execute_pngquant(file, quality):
     subprocess.run(arguments, shell=True)
 
 
-from PIL import Image
-import math
-
 def resize_images(file):
     img = Image.open(file)
     initial_size = img.size
@@ -59,23 +55,22 @@ def resize_images(file):
         aspect_ratio = width / height
         if width > height:
             new_width = 4096
-            new_height = math.floor(new_width / aspect_ratio)
+            new_height = round(new_width / aspect_ratio)
         else:
             new_height = 4096
-            new_width = math.floor(new_height * aspect_ratio)
+            new_width = round(new_height * aspect_ratio)
 
         new_width = round(new_width / 4) * 4
         new_height = round(new_height / 4) * 4
 
         img.thumbnail((new_width, new_height), Image.LANCZOS)
-        img.save(file)
     else:
-        new_width = math.ceil(width / 4) * 4
-        new_height = math.ceil(height / 4) * 4
+        new_width = round(width / 4) * 4
+        new_height = round(height / 4) * 4
 
         img = img.resize((new_width, new_height), Image.LANCZOS)
-        img.save(file)
 
+    img.save(file)
     resized_size = img.size
     return initial_size, resized_size
 
