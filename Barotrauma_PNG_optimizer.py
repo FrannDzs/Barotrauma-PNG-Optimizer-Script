@@ -1,8 +1,8 @@
 import os
 import subprocess
 import sys
-from PIL import PIL
-from tqdm import tqdm
+import PIL
+import tqdm
 
 
 def install_pip():
