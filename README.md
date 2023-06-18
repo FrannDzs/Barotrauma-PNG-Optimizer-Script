@@ -14,6 +14,7 @@
 
 # Features
 - Automatically resizes images exceeding 4096 by height or width, while maintaining the aspect ratio, using the Lanczos algorithm.
+- Rounds image resolution to the nearest multiple of 4
 - Works by default with mods installation folder: `%localappdata%\Daedalic Entertainment GmbH\Barotrauma\WorkshopMods\Installed`
 - Works with custom paths
 - Displays file sizes before and after compression
