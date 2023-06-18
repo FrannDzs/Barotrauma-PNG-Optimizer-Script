@@ -34,7 +34,7 @@ def search_png_files(folder):
 def execute_pngquant(file, quality):
     script_path = os.path.dirname(os.path.abspath(__file__))
     pngquant_path = os.path.join(script_path, "pngquant.exe")
-    arguments = [pngquant_path, "--force", "--ext=.png", "--skip-if-larger", "--quality", quality, file]
+    arguments = [pngquant_path, "--force", "--ext=.png", "--skip-if-larger", "--quality=", quality, file]
     subprocess.run(arguments, shell=True)
 
 
