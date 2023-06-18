@@ -106,7 +106,8 @@ def main():
 
     search_folder = get_folder_path()
     found_files = search_png_files(search_folder)
-
+    resized_files = []
+    
     print("\033[1mPNG files found:")
     for file in found_files:
         print("\033[1m" + file)
@@ -121,10 +122,12 @@ def main():
         total_initial_size += initial_size
         total_compressed_size += compressed_size
         print("\033[1m-------------------------------------------")
-    print(f"\033[1mTotal size before compression: {total_initial_size} bytes")
-    print(f"\033[1mTotal size after compression: {total_compressed_size} bytes")
-    print("\033[1mFiles resized:")
-    for file in resized_files:
+        if initial_size != compressed_size or initial_resolution != resized_resolution:
+            resized_files.append(file)
+        print(f"\033[1mTotal size before compression: {total_initial_size} bytes")
+        print(f"\033[1mTotal size after compression: {total_compressed_size} bytes")
+        print("\033[1mFiles resized:")
+        for file in resized_files:
         print("\033[1m" + file)
         
 if __name__ == "__main__":
