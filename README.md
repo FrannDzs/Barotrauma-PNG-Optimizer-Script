@@ -22,6 +22,7 @@ This Python script is designed to compress and resize PNG images within a folder
 - Supports custom paths for image optimization.
 - Displays file sizes before and after compression.
 - Allows you to choose the quality range for optimization.
+- Display a progress bar
 
 ## Dependencies
 
