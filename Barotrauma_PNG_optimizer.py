@@ -113,7 +113,7 @@ def main():
     quality = input("\033[1mEnter the quality range (min-max) for compression: ")
     total_initial_size = 0
     total_compressed_size = 0
-
+    
     valid_response = False
     while not valid_response:
         resize_option = get_user_input("\033[1mDo you want to automatically resize images larger than 4096x4096 and round the width and height to the nearest multiple of 4? (Y/N): ", ["y", "n"])
@@ -127,28 +127,32 @@ def main():
 
     search_folder = get_folder_path()
     found_files = search_png_files(search_folder)
-    resized_files = []
 
     print("\033[1mPNG files found:")
     for file in found_files:
-        print("\033[1m" + file)
-        initial_size = os.path.getsize(file)
-        execute_pngquant(file, quality)
-        compressed_size = os.path.getsize(file)
-        initial_resolution, resized_resolution = resize_images(file)
-        print(f"\033[1mResolution before resizing: {initial_resolution}")
-        print(f"\033[1mResolution after resizing: {resized_resolution}")
-        print(f"\033[1mSize before compression: {initial_size} bytes")
-        print(f"\033[1mSize after compression: {compressed_size} bytes")
-        total_initial_size += initial_size
-        total_compressed_size += compressed_size
-        print("\033[1m-------------------------------------------")
-        if initial_size != compressed_size or initial_resolution != resized_resolution:
-            resized_files.append(file)
-        print(f"\033[1mTotal size before compression: {total_initial_size} bytes")
-        print(f"\033[1mTotal size after compression: {total_compressed_size} bytes")
+        try:
+            print("\033[1m" + file)
+            initial_size = os.path.getsize(file)
+            execute_pngquant(file, quality)
+            compressed_size = os.path.getsize(file)
+            total_initial_size += initial_size
+            total_compressed_size += compressed_size
+            initial_resolution, resized_resolution = resize_images(file)
+            print(f"\033[1mResolution before resizing: {initial_resolution}")
+            print(f"\033[1mResolution after resizing: {resized_resolution}")
+            print(f"\033[1mSize before process: {initial_size} bytes")
+            print(f"\033[1mSize after process: {compressed_size} bytes")
+            print("\033[1m-------------------------------------------")
+        except Exception as e:
+            print(f"\033[1;31mError processing file: {file}")
+            print(f"\033[1;31mError message: {str(e)}")
+            continue
+            
+    print("\033[1m-------------------------------------------")
+    print(f"\033[1mTotal initial size: {total_initial_size} bytes")
+    print(f"\033[1mTotal compressed size: {total_compressed_size} bytes")
+
 
 
 if __name__ == "__main__":
     main()
-    
