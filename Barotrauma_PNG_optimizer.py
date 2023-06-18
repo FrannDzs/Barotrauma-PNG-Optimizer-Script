@@ -3,6 +3,7 @@ import subprocess
 from PIL import Image
 import sys
 
+
 def install_pip():
     if sys.version_info < (3, 4):
         print("pip not found. Installing...")
@@ -10,6 +11,7 @@ def install_pip():
         print("pip installed successfully!")
     else:
         print("Python version is 3.4 or greater. Skipping pip installation.")
+
 
 def install_pillow():
     try:
@@ -19,6 +21,7 @@ def install_pillow():
         subprocess.check_call([sys.executable, "-m", "pip", "install", "pillow"])
         print("Pillow installed successfully!")
 
+
 def search_png_files(folder):
     png_files = []
     for path, directories, files in os.walk(folder):
@@ -27,13 +30,13 @@ def search_png_files(folder):
                 png_files.append(os.path.join(path, file))
     return png_files
 
+
 def execute_pngquant(file, quality):
     script_path = os.path.dirname(os.path.abspath(__file__))
     pngquant_path = os.path.join(script_path, "pngquant.exe")
     arguments = [pngquant_path, "--force", "--ext=.png", "--skip-if-larger", "--quality", quality, file]
     subprocess.run(arguments, shell=True)
 
-from PIL import Image
 
 def resize_images(file):
     img = Image.open(file)
@@ -78,6 +81,7 @@ def print_header():
     print("\033[1;31m**I hope this script proves useful to you! If you have any questions, feel free to ask**")
     print("\033[1;36m--------------------------------------------")
 
+
 def get_user_input(prompt, valid_options):
     while True:
         user_input = input(prompt).lower()
@@ -85,6 +89,7 @@ def get_user_input(prompt, valid_options):
             return user_input
         else:
             print("Invalid input. Please enter a valid option.")
+
 
 def get_folder_path():
     use_default_url = get_user_input("\033[1mDo you want to use the default path? (%localappdata%\\Daedalic Entertainment GmbH\\Barotrauma\\WorkshopMods\\Installed)? (Y/N): ", ["y", "n"])
@@ -98,6 +103,7 @@ def get_folder_path():
         else:
             print("\033[1mOperation canceled.")
             sys.exit()
+
 
 def main():
     install_pip()
@@ -122,7 +128,7 @@ def main():
     search_folder = get_folder_path()
     found_files = search_png_files(search_folder)
     resized_files = []
-    
+
     print("\033[1mPNG files found:")
     for file in found_files:
         print("\033[1m" + file)
@@ -141,6 +147,8 @@ def main():
             resized_files.append(file)
         print(f"\033[1mTotal size before compression: {total_initial_size} bytes")
         print(f"\033[1mTotal size after compression: {total_compressed_size} bytes")
-        
+
+
 if __name__ == "__main__":
     main()
+    
