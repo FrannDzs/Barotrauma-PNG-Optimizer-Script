@@ -6,20 +6,20 @@ import sys
 
 def install_pip():
     if sys.version_info < (3, 4):
-        print("pip not found. Installing...")
+        print("\033[1;33mpip not found. Installing...")
         subprocess.check_call([sys.executable, "-m", "ensurepip", "--upgrade"])
-        print("pip installed successfully!")
+        print("\033[1;32mpip installed successfully!")
     else:
-        print("Python version is 3.4 or greater. Skipping pip installation.")
+        print("\033[1;36mPython version is 3.4 or greater. Skipping pip installation.")
 
 
 def install_pillow():
     try:
         import PIL
     except ImportError:
-        print("Pillow not found. Installing...")
+        print("\033[1;33mPillow not found. Installing...")
         subprocess.check_call([sys.executable, "-m", "pip", "install", "pillow"])
-        print("Pillow installed successfully!")
+        print("\033[1;32mPillow installed successfully!")
 
 
 def search_png_files(folder):
@@ -88,7 +88,7 @@ def get_user_input(prompt, valid_options):
         if user_input in valid_options:
             return user_input
         else:
-            print("Invalid input. Please enter a valid option.")
+            print("\033[1;31mInvalid input. Please enter a valid option.")
 
 
 def get_folder_path():
@@ -113,7 +113,7 @@ def main():
     quality = input("\033[1mEnter the quality range (min-max) for compression: ")
     total_initial_size = 0
     total_compressed_size = 0
-    
+
     valid_response = False
     while not valid_response:
         resize_option = get_user_input("\033[1mDo you want to automatically resize images larger than 4096x4096 and round the width and height to the nearest multiple of 4? (Y/N): ", ["y", "n"])
@@ -123,7 +123,7 @@ def main():
         elif resize_option == 'n':
             valid_response = True
         else:
-            print("Invalid input. Please enter 'Y' or 'N'.")
+            print("\033[1;31mInvalid input. Please enter 'Y' or 'N'.")
 
     search_folder = get_folder_path()
     found_files = search_png_files(search_folder)
@@ -147,11 +147,10 @@ def main():
             print(f"\033[1;31mError processing file: {file}")
             print(f"\033[1;31mError message: {str(e)}")
             continue
-            
+
     print("\033[1m-------------------------------------------")
     print(f"\033[1mTotal initial size: {total_initial_size} bytes")
     print(f"\033[1mTotal compressed size: {total_compressed_size} bytes")
-
 
 
 if __name__ == "__main__":
