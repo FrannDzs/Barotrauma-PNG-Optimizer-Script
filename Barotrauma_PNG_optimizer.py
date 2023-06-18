@@ -4,6 +4,7 @@ import sys
 from PIL import Image
 from tqdm import tqdm
 
+
 def install_pip():
     if sys.version_info < (3, 4):
         print("\033[0;32mpip not found. Installing...\033[0m")
@@ -13,22 +14,15 @@ def install_pip():
         print("\033[0;32mPython version is 3.4 or greater. Skipping pip installation.\033[0m")
 
 
-def install_pillow():
+def install_package(package_name):
     try:
-        import PIL
+        __import__(package_name)
     except ImportError:
-        print("\033[0;32mPillow not found. Installing...\033[0m")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "pillow"])
-        print("\033[0;32mPillow installed successfully!\033[0m")
+        print(f"\033[0;32m{package_name} not found. Installing...\033[0m")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package_name])
+        print(f"\033[0;32m{package_name} installed successfully!\033[0m")
 
-def install_tqdm():
-    try:
-        import tqdm
-    except ImportError:
-        print("\033[0;32mTqdm not found. Installing...\033[0m")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "tqdm"])
-        print("\033[0;32mTqdm installed successfully!\033[0m")
-        
+
 def search_png_files(folder):
     png_files = []
     for path, directories, files in os.walk(folder):
@@ -45,8 +39,6 @@ def execute_pngquant(file, quality):
     subprocess.run(arguments, shell=True)
 
 
-from PIL import Image
-
 def resize_images(file):
     img = Image.open(file)
     initial_size = img.size
@@ -61,17 +53,14 @@ def resize_images(file):
         new_width = width
         new_height = height
 
-    if new_width % 4 != 0:
-        new_width = round(new_width / 4) * 4
-    if new_height % 4 != 0:
-        new_height = round(new_height / 4) * 4
+    new_width = round(new_width / 4) * 4 if new_width % 4 != 0 else new_width
+    new_height = round(new_height / 4) * 4 if new_height % 4 != 0 else new_height
 
     rounded_img = img.resize((new_width, new_height), Image.LANCZOS)
     rounded_img.save(file)
     resized_size = rounded_img.size
 
     return initial_size, resized_size
-
 
 
 def print_header():
@@ -112,8 +101,8 @@ def get_folder_path():
 
 def main():
     install_pip()
-    install_pillow()
-    install_tqdm()
+    install_package("Pillow")
+    install_package("tqdm")
     print_header()
     input("\033[0;32mPress Enter to continue...\033[0m")
     quality = input("Enter the quality range (min-max) for compression: ")
