@@ -53,6 +53,12 @@ def resize_images(file):
         
         img.thumbnail((new_width, new_height), Image.LANCZOS)
         img.save(file)
+    else:
+        new_width = round(width / 4) * 4
+        new_height = round(height / 4) * 4
+        
+        img = img.resize((new_width, new_height), Image.LANCZOS)
+        img.save(file)
     
     resized_size = img.size
     return initial_size, resized_size
@@ -101,7 +107,7 @@ def main():
 
     valid_response = False
     while not valid_response:
-        resize_option = get_user_input("\033[1mDo you want to automatically resize images larger than 4096x4096? (Y/N): ", ["y", "n"])
+        resize_option = get_user_input("\033[1mDo you want to automatically resize images larger than 4096x4096 and if the image size does not exceed the 4096 limit, round the width and height to the nearest multiple of 4? (Y/N): ", ["y", "n"])
         if resize_option == 'y':
             print("\033[1;33mCAUTION: This will overwrite the original files...")
             valid_response = True
