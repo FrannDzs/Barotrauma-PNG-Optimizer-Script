@@ -24,3 +24,5 @@
 - [pip](https://pypi.org/project/pip/): It is automatically installed if the Python version is lower than 3.4
 
 - [pillow](https://pypi.org/project/Pillow/): The script will ask you if you want to install it
+
+- [tqdm](https://pypi.org/project/tqdm/): It is automatically installed
