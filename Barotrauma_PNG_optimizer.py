@@ -45,6 +45,8 @@ def execute_pngquant(file, quality):
     subprocess.run(arguments, shell=True)
 
 
+from PIL import Image
+
 def resize_images(file):
     img = Image.open(file)
     initial_size = img.size
@@ -59,14 +61,17 @@ def resize_images(file):
         new_width = width
         new_height = height
 
-    new_width = round(new_width / 4) * 4
-    new_height = round(new_height / 4) * 4
+    if new_width % 4 != 0:
+        new_width = round(new_width / 4) * 4
+    if new_height % 4 != 0:
+        new_height = round(new_height / 4) * 4
 
-    img.thumbnail((new_width, new_height), Image.LANCZOS)
-    img.save(file)
-    resized_size = img.size
+    rounded_img = img.resize((new_width, new_height), Image.LANCZOS)
+    rounded_img.save(file)
+    resized_size = rounded_img.size
 
     return initial_size, resized_size
+
 
 
 def print_header():
