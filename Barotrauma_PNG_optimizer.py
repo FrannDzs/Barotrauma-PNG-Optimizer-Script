@@ -47,8 +47,12 @@ def resize_images(file):
 
     if max_dimension > 4096:
         aspect_ratio = width / height
-        new_width = 4096
-        new_height = round(new_width / aspect_ratio) if width > height else 4096
+        if width > height:
+            new_width = 4096
+            new_height = round(new_width / aspect_ratio)
+        else:
+            new_height = 4096
+            new_width = round(new_height * aspect_ratio)
     else:
         new_width = width
         new_height = height
