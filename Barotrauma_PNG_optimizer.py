@@ -7,9 +7,7 @@ from tqdm import tqdm
 
 def install_pip():
     if sys.version_info < (3, 4):
-        print("\033[0;32mpip not found. Installing...\033[0m")
         subprocess.check_call([sys.executable, "-m", "ensurepip", "--upgrade"])
-        print("\033[0;32mpip installed successfully!\033[0m")
     else:
         print("\033[0;32mPython version is 3.4 or greater. Skipping pip installation.\033[0m")
 
@@ -18,9 +16,7 @@ def install_package(package_name):
     try:
         import package_name
     except ImportError:
-        print(f"\033[0;32m{package_name} not found. Installing...\033[0m")
         subprocess.check_call([sys.executable, "-m", "pip", "install", package_name])
-        print(f"\033[0;32m{package_name} installed successfully!\033[0m")
 
 
 def search_png_files(folder):
