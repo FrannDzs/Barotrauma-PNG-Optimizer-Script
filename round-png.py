@@ -34,6 +34,7 @@ def process_images(file_list):
         except Exception as e:
             print(f"An error occurred while processing file '{os.path.basename(file_path)}': {str(e)}")
 
-folder_path = r"%localappdata%\Daedalic Entertainment GmbH\Barotrauma\WorkshopMods\Installed"
+# Corrected folder path
+folder_path = os.path.expandvars(r"%localappdata%\Daedalic Entertainment GmbH\Barotrauma\WorkshopMods\Installed")
 
 resize_png_files(folder_path)
